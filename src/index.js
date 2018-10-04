@@ -1,7 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Wrapper from './components/Wrapper'
+import todoApp from './reducers/combine'
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import App from './components/App'
 
-const Todo = ()=> <div className="wrapper_todo"><Wrapper/></div>
-ReactDOM.render(<Todo/>, document.getElementById('root'));
+let store = createStore(todoApp);
+ReactDOM.render(
+  <Provider store={store}>
+    <App/>
+  </Provider>,
+  document.getElementById('root')
+)
+
+// export default store;
