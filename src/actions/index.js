@@ -11,3 +11,16 @@ export function Remove(id){
 		elem: id
 	}	
 }
+
+export function todoAdd(id){
+	return{
+		type: "ADD_TODO",
+		elem: id
+	}
+}
+export function todoRemove(id){
+	return{
+		type: "REMOVE_TODO",
+		elem: id
+	}
+}

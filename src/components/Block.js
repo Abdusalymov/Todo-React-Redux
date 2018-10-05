@@ -1,43 +1,21 @@
 import React from 'react';
-// import { TaskName, HideWrapper} from './TaskName'
+import  HideComponent from './HideComponent'
+import NameOfTask from './NameOfTask'
 // import { Remove } from '../actions'
 // import { connect } from 'react-redux';
-
+let uniqid = require('uniqid');
 class Block extends React.Component{
-	// constructor(props){
-	// 	super(props);
-	// 	this.state = {
-	// 		remove: this.props.removeBlock,
-	// 		ident: this.props.ident
-	// 	}
-	// }
-	// state = {
-	// 	elems: [], 
-	// 	toggleSwitch: 'block', 
-	// 	toggleName: "CLOSE"
-	// };
-  // appChildBLock(){
-  //   const {elems} = this.state;
-  //   this.setState({elems: elems.concat(elems.length)});
-	// }
-	// removeChildBlock(i){
-	// 	const {elems} = this.state;
-	// 	elems.splice(i,1);
-	// 	this.setState({elems: elems})
-	// }
-	// hideElementList(){
-	// 	const {toggleSwitch, toggleName} = this.state;
-	// 	this.setState({
-	// 		toggleSwitch: toggleSwitch === "block" ? "none" : "block",
-	// 		toggleName: toggleName === "OPEN" ? "CLOSE" : "OPEN" 
-	// 	})
-	// }
 
 	dispatch(){
 		const {removeBlock, ident} = this.props;
 		removeBlock(ident);
 	}
   render(){
+		const { 
+			child, 
+			add, 
+			remove
+		} = this.props
     return(
       <ul className="block_list">
         <li className="hedear_blockList">
@@ -51,11 +29,8 @@ class Block extends React.Component{
 					</div>
 					<span className="open_close cursor_style">{/*toggleName*/}</span>
 				</li>
-				{/* <TaskName/>
-				<HideWrapper elems={elems} 
-					removeBlock={this.removeChildBlock.bind(this)} 
-					toggle={toggleSwitch}
-				/> */}
+				<NameOfTask/>
+				<HideComponent child={child} remove={remove}/>
       </ul>
     )
   }

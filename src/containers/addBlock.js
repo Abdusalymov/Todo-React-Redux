@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Wrapper from '../components/Wrapper';
 import { Add, Remove } from '../actions';
 
-const mapStateToProps = (state)=> {
+const mapStateToProps = state => {
 	return{
 		child: state.todos,
 	}

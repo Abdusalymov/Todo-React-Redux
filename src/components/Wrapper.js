@@ -1,7 +1,6 @@
 import React from 'react';
 import Block from './Block'
 let uniqid = require('uniqid');
-let counter = 0;
 const Wrapper = ({ child, add, removeBlock }) =>{
 	return(
 		<div className="wrapper_inner">
@@ -9,7 +8,7 @@ const Wrapper = ({ child, add, removeBlock }) =>{
 				<button id="main_task" 
 					className="btn btnAddingTask cursor_style"
 					onClick={()=>{
-						add(counter++);
+						add(uniqid());
 					}}> 
 					ADD NEW TASK
 				</button>
