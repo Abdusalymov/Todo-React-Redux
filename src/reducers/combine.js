@@ -3,7 +3,7 @@ import { todos, todo } from './index';
 
 const todoApp = combineReducers({
 	todos,
-	todo
+	// todo
 })
 
 export default todoApp;

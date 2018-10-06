@@ -1,5 +1,5 @@
 import React from 'react';
-import Block from './Block'
+import Block from '../containers/addTodo'
 let uniqid = require('uniqid');
 const Wrapper = ({ child, add, removeBlock }) =>{
 	return(

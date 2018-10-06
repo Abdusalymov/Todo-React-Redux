@@ -1,27 +1,26 @@
-import { connect } from 'redux'
+import { connect } from 'react-redux'
 import Block from '../components/Block'
-import { todoAdd, todoRemove} from '../actions'
+import { todoAdd, todoRemove } from '../actions'
 
 const mapStateToProps = state =>{
 	return {
-		child: state.todo
+		child: state.todos[0].child
 	}
 }
 
 const mapDispatchToProps = dispatch =>{
 	return{
-		add: (id)=>{
-			dispatch(todoAdd(id))
+		add: (child, parent)=>{
+			dispatch(todoAdd(child, parent))
 		},
-		remove: (id)=>{
-			dispatch(todoRemove(id))
-		}
+		// remove: (id)=>{
+		// 	dispatch(todoRemove(id))
+		// }
 	}
 }
 
-const Block = connect(
+export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(HideComponent);
-
-export default Block;
+)(Block);
+// export default AddTodo;
