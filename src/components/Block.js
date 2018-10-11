@@ -4,7 +4,6 @@ import NameOfTask from './NameOfTask'
 // import { Remove } from '../actions'
 let uniqid = require('uniqid');
 class Block extends React.Component{
-
 	addTodo(){
 		this.props.add(uniqid(), this.props.ident.id);
 	}
@@ -13,7 +12,7 @@ class Block extends React.Component{
 		removeBlock(ident);
 	}
   render(){
-		const {child, remove} = this.props
+		// const { remove} = this.props
     return(
       <ul className="block_list">
         <li className="hedear_blockList">
@@ -27,8 +26,8 @@ class Block extends React.Component{
 					</div>
 					<span className="open_close cursor_style">{/*toggleName*/}</span>
 				</li>
-				<NameOfTask/>
-				<HideComponent child={child} remove={remove}/>
+				<NameOfTask parent={this.props.ident} addNameOfBlock={this.props.addNameOfBlock}/>
+				<HideComponent items={this.props.ident} remove={this.props.remove} addNameOfTodo={this.props.addNameOfTodo}/>
       </ul>
     )
   }

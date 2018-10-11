@@ -1,6 +1,10 @@
 import { connect } from 'react-redux'
 import Block from '../components/Block'
-import { todoAdd, todoRemove } from '../actions'
+import { 
+	todoAdd, 
+	todoRemove, 
+	addNameOfBlock, 
+	addNameOfTodo } from '../actions'
 
 const mapStateToProps = state =>{
 	return {
@@ -13,9 +17,15 @@ const mapDispatchToProps = dispatch =>{
 		add: (child, parent)=>{
 			dispatch(todoAdd(child, parent))
 		},
-		// remove: (id)=>{
-		// 	dispatch(todoRemove(id))
-		// }
+		remove: (parentId, childId)=>{
+			dispatch(todoRemove(parentId, childId))
+		},
+		addNameOfBlock:(parentId, name)=>{
+			dispatch(addNameOfBlock(parentId, name))
+		},
+		addNameOfTodo:(parentId, childId, name) =>{
+			dispatch(addNameOfTodo(parentId, childId, name))
+		}
 	}
 }
 

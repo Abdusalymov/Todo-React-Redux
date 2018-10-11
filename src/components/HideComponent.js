@@ -3,12 +3,15 @@ import ElementList from './ElementList';
 let uniqid = require('uniqid');
 
  const HideComponent = (props) =>{
-	// const{child, remove} = props;
-	// let style = {display: toggle};
 	 return(
 		<div className="hide" > {/*style={style}*/}
-			{props.child.length !== 0 && props.child.map((item) => 
-				(<ElementList key={uniqid()} ident={item} remove={props.remove}/>))
+			{props.items.child.length !== 0 && props.items.child.map((index) => 
+				(<ElementList key={uniqid()} 
+					parentId={props.items.id}
+					index={index} 
+					remove={props.remove} 
+					addNameOfTodo={props.addNameOfTodo}/>
+				))
 			}
 		</div>
 	)

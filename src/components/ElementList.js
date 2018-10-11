@@ -11,26 +11,29 @@ class ElementList extends React.Component{
     const {elem} = this.state;
     this.setState({elem: elem.concat(elem.length)});
   }
-  handleChange(e){
-    let value = e.target.value;
-    this.setState({text: value})
-	}
+  // handleChange(e){
+  //   let value = e.target.value;
+  //   this.setState({text: value})
+	// }
 	removeElementList(){
-		this.props.remove(this.props.ident);
+		this.props.remove(this.props.parentId, this.props.index);
 	}
   remove(i){
     const {elem} = this.state;
     elem.splice(i, 1);
     this.setState({elem: elem});
-  }
+	}
+	insertName(e){
+		const {parentId, index, addNameOfTodo} = this.props;
+		addNameOfTodo(parentId, index.id, e.target.value)
+	}
   render(){
-		const {text} = this.state;
     return(
       <li className="child">
         <label>
           <input type="checkbox" className='checkbox'/>
           <span className="checkbox_custom"></span>
-          {text ? text : (<input type="text" onBlur={this.handleChange.bind(this)}/>)}
+          {this.props.text ? this.props.text : (<input type="text" onBlur={this.insertName.bind(this)}/>)}
         </label>
         <div>
           <span className='add' onClick={this.appChild.bind(this)}>Add</span>
