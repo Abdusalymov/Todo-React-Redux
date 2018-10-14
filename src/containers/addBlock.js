@@ -1,20 +1,24 @@
 import { connect } from 'react-redux';
 import Wrapper from '../components/Wrapper';
-import { Add, Remove } from '../actions';
+import { addBlock, removeBlock, toggleVisibility } from '../actions';
 
 const mapStateToProps = state => {
 	return{
-		child: state.todos,
+		blocksArr: state.blocks
 	}
 }
 const mapDispatchToProps = dispatch => {
   return {
-    add: (id) => {
-      dispatch(Add(id))
+    addBlock: (id) => {
+      dispatch(addBlock(id))
 		},
 		removeBlock: (id) =>{
-			dispatch(Remove(id))
+			dispatch(removeBlock(id))
+		},
+		toggle:(parentId, textBtn, style) => {
+			dispatch(toggleVisibility(parentId, textBtn, style))
 		}
+
   }
 }
 const AddBlock = connect(

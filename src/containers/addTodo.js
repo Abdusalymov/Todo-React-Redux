@@ -4,28 +4,43 @@ import {
 	todoAdd, 
 	todoRemove, 
 	addNameOfBlock, 
-	addNameOfTodo } from '../actions'
+	addNameOfTodo,
+	addSubTodo,
+	addNameSubTodo,
+	removeSubTodo } from '../actions'
 
 const mapStateToProps = state =>{
 	return {
-		child: state.todos[0].child
+		todosArr: state.todos,
+		subTodoArr: state.subTodos
 	}
 }
 
 const mapDispatchToProps = dispatch =>{
 	return{
-		add: (child, parent)=>{
-			dispatch(todoAdd(child, parent))
+		add: (todoId, blockId)=>{
+			dispatch(todoAdd(todoId, blockId))
 		},
-		remove: (parentId, childId)=>{
-			dispatch(todoRemove(parentId, childId))
+		remove: (todoId)=>{
+			dispatch(todoRemove(todoId))
 		},
 		addNameOfBlock:(parentId, name)=>{
 			dispatch(addNameOfBlock(parentId, name))
 		},
+
 		addNameOfTodo:(parentId, childId, name) =>{
 			dispatch(addNameOfTodo(parentId, childId, name))
-		}
+		},
+		addSubTodo:(todoId, subTodoId) =>{
+			dispatch(addSubTodo(todoId, subTodoId))
+		},
+
+		addNameSubTodo:(subTodoId, name)=>{
+			dispatch(addNameSubTodo(subTodoId, name))
+		},
+		removeSubTodo:(subTodoId) =>{
+			dispatch(removeSubTodo(subTodoId))
+		},
 	}
 }
 

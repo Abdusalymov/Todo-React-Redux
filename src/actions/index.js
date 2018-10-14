@@ -1,46 +1,77 @@
-export function Add(id) {
+export function addBlock(id) {
   return {
     type: "ADD_BLOCK",
-    elem: id
+    blocks: id
   }
 }
 
-export function Remove(id){
+export function removeBlock(id){
 	return{
 		type: "REMOVE_BLOCK",
-		elem: id
+		blockId: id
 	}	
 }
 
-export function todoRemove(parentId, childId){
-	return{
-		type: "REMOVE_TODO",
-		childId: childId,
-		parentId: parentId
-	}
-}
-
-export function todoAdd(child, parent){
-	return{
-		type: "ADD_CHILD",
-		childId: child,
-		parentId: parent
-	}
-}
-
-export function addNameOfBlock(parentId, name){
+export function addNameOfBlock(blockId, name){
 	return{
 		type: "ADD_NAMEBLOCK",
-		name: name,
-		parentId: parentId
+		blockName: name,
+		blockId: blockId
 	}
 }
 
-export function addNameOfTodo(parentId, childId, name){
+export function todoRemove(todoId){
+	return{
+		type: "REMOVE_TODO",
+		todoId: todoId
+	}
+}
+
+export function todoAdd(todoId, blockId){
+	return{
+		type: "ADD_TODO",
+		todoId: todoId,
+		blockId: blockId
+	}
+}
+
+export function addNameOfTodo(todoId, todoName){
 	return{
 		type: "ADD_NAMETODO",
-		name: name,
-		parentId: parentId,
-		childId: childId,
+		todoName: todoName,
+		todoId: todoId,
+	}
+}
+
+export function addSubTodo(todoId, subTodoId){
+	return{
+		type: "ADD_SUBTODO",
+		todoId: todoId,
+		subTodoId: subTodoId
+	}
+}
+
+export function removeSubTodo(subTodoId){
+	return{
+		type: "REMOVE_SUBTODO",
+		subTodoId: subTodoId
+	}
+}
+
+
+export function addNameSubTodo(subTodoId, value){
+	return{
+		type: "ADD_NAMESUBTODO",
+		subTodoId: subTodoId,
+		subTodoName: value
+	}
+}
+
+export function toggleVisibility(blockId, textBtn, style){
+	return{
+		type: "VISIBILITY",
+		blockId: blockId,
+		textBtn: textBtn,
+		display: style
 	}
 }

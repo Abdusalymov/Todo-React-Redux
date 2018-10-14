@@ -2,13 +2,13 @@ import React from 'react';
 
 class NameOfTask extends React.Component{
   insertName(e){
-		this.props.addNameOfBlock(this.props.parent.id, e.target.value);
+		this.props.addNameOfBlock(this.props.block.id, e.target.value);
   }
   render(){
-		const {parent} = this.props;
+		const {block} = this.props;
     return(
       <h1 className="name_task cursor_style">
-        {parent.name ? parent.name : (<input type="text" className="name" onBlur={this.insertName.bind(this)}/>)}
+        {block.blockName ? block.blockName : (<input type="text" className="name" onBlur={this.insertName.bind(this)}/>)}
       </h1>
     )
   }

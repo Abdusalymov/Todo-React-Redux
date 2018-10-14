@@ -1,20 +1,26 @@
 import React from 'react';
 import Block from '../containers/addTodo'
 let uniqid = require('uniqid');
-const Wrapper = ({ child, add, removeBlock }) =>{
+
+const Wrapper = ({ blocksArr, addBlock, removeBlock, toggle }) =>{
 	return(
 		<div className="wrapper_inner">
 			<div className="add_Main_Task">
 				<button id="main_task" 
 					className="btn btnAddingTask cursor_style"
 					onClick={()=>{
-						add(uniqid());
+						addBlock(uniqid());
 					}}> 
 					ADD NEW TASK
 				</button>
 			</div>
-				{ child.length !== 0 && child.map((item) => 
-					(<Block key={uniqid()} ident={item} removeBlock={removeBlock}/>))
+				{ blocksArr.length !== 0 && blocksArr.map((item) => 
+					(<Block 
+						key={uniqid()} 
+						block={item} 
+						removeBlock={removeBlock}
+						toggle={toggle}
+						/>))
 				}
 		</div>
 	)

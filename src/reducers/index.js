@@ -1,62 +1,106 @@
- export const todos = (state= [], action)=>{
+export const blocks = (state=[], action)=>{
+	 
 	switch(action.type){
+
 		case "ADD_BLOCK":
 			return [
 				...state,
-				{	
-					id: action.elem,
-					name: action.name,
-					child: []
+				{
+					id: action.blocks, 
+					visibility: 'block',
+					textBtn: "CLOSE"
 				}
 			];
+
 		case "REMOVE_BLOCK":
-			return state.filter(element => element.id !== action.elem.id)
-		case "ADD_CHILD":
-		return state.map((item) => {
-			return item.id === action.parentId ? Object.assign({}, item, {
-				child: [...item.child, {id: action.childId}]
-			}) : item;
-		});
-		case "REMOVE_TODO":
-			return state.filter(element => {
-				if(element.id === action.parentId){
-					element.child.splice(action.childId, 1);
-				}
-				return element;
-			});
+			return state.filter(item => item.id !== action.blockId);
+
 		case "ADD_NAMEBLOCK":
-			return state.filter(elem => {
-				if(elem.id === action.parentId){
-					elem.name = action.name;
+			return state.map((item)=>{
+			
+				if(item.id === action.blockId){
+					return	Object.assign({}, item, {
+						blockName: action.blockName 
+					})
+				}
+				return item;
+			});
+
+		case "VISIBILITY":
+			return state.filter(elem =>{
+				
+				if(elem.id === action.blockId){
+					elem.visibility = action.display === 'none' ? 'block' : 'none';
+					elem.textBtn = action.textBtn === "OPEN" ? "CLOSE" : "OPEN";
 				}
 				return elem;
-			})
-		case "ADD_NAMETODO":
-		return state.filter(elem => {
-			if(elem.id === action.parentId){
-				elem.child.map(item => {
-					if(item.id === action.childId){
-						item.name = action.name;
-					}
-					return item;
-				})
-			}
-			return elem;
-		})
+
+			});
+
 		default:
 			return state;
 	}
 }
 
+export const todos = (state=[], action) =>{
+	switch(action.type){
 
-// export const todo = (state= [], action)=>{
-// 	switch(action.type){
-// 		case "ADD_TODO":
-// 			return 	todos(undefined, action)
+		case "ADD_TODO":
+			return [
+				...state,
+				{
+					blockId: action.blockId, 
+					id: action.todoId, 
+				}
+			]
+
+		case "REMOVE_TODO":
+			return state.filter(item => item.id !== action.todoId);	
+
+		case "ADD_NAMETODO":
+		return state.map((item)=>{
 			
-// 		case "REMOVE_ADD":
-// 			return state.filter(element => element !== action.elem)
-// 		default:
-// 			return state;
-// 	}
-// }
+			if(item.id === action.todoId){
+				return	Object.assign({}, item, {
+					todoName: action.todoName 
+				})
+			}
+			return item;
+		});
+
+		default:
+			return state;
+	}
+}
+
+export const subTodos = (state=[], action)=>{
+
+	switch(action.type){
+
+		case "ADD_SUBTODO":
+			return [
+				...state,
+				{
+					todoId: action.todoId,
+					subTodoId: action.subTodoId
+				}
+			]
+
+		case "REMOVE_SUBTODO":
+			return state.filter(item => item.subTodoId !== action.subTodoId);
+
+		case "ADD_NAMESUBTODO":
+			return state.map((item)=>{
+			
+				if(item.subTodoId === action.subTodoId){
+					return	Object.assign({}, item, {
+						subTodoName: action.subTodoName 
+					})
+				}
+				return item;
+			});
+
+		default:
+			return state;
+	} 
+}
